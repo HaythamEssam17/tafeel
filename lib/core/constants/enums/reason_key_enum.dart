@@ -1,0 +1,4 @@
+enum ReasonKey {
+  deleteReasons,
+  ticketReasons,
+}

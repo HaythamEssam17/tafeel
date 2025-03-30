@@ -1,0 +1,29 @@
+class IconPathsSVG {
+  static const String emailIcon = "email_icon.svg";
+  static const String eyeOpenIcon = "eye_open.svg";
+  static const String eyeCloseIcon = "eye_close.svg";
+  static const String lockIconIcon = "lock_icon.svg";
+  static const String cameraIcon = "camera.svg";
+  static const String galleryIcon = "gallery.svg";
+  static const String binIcon = "bin_icon.svg";
+  static const String personIcon = "person_icon.svg";
+  static const String phoneIcon = "phone_icon.svg";
+  static const String rightArrowIcon = "right_arrow_icon.svg";
+  static const String notificationIcon = "notification_icon.svg";
+  static const String sideMenuCarIcon = "side_menu_car.svg";
+  static const String settingIcon = "setting.svg";
+  static const String logoCarCheckIcon = "logo_car_check.svg";
+  static const String homeActiveIcon = "home_active.svg";
+  static const String homeIcon = "home.svg";
+  static const String walletIcon = "wallet_icon.svg";
+  static const String walletActiveIcon = "wallet_active.svg";
+  static const String accountActiveIcon = "person_active.svg";
+  static const String accountIcon = "person.svg";
+  static const String logOutIcon = "log_out.svg";
+  static const String closeIcon = "close.svg";
+  static const String arabicIcon = "EG.svg";
+  static const String englishIcon = "US.svg";
+  static const String arrowForwardIcon = "arrow_forward.svg";
+  static const String searchIcon = "search_icon.svg";
+  static const String referIcon = "refer_icon.svg";
+}

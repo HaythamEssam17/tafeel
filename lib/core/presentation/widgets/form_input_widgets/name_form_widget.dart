@@ -1,0 +1,50 @@
+import 'package:clean_arch_demo_las_version/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../constants/app_constants.dart';
+import '../../../constants/asset_paths/icon_path.dart';
+import '../../../helpers/validators/validators.dart';
+import '../common_text_form_field_widget.dart';
+
+class NameFormWidget extends StatelessWidget {
+  final TextEditingController nameController;
+  final String? Function(String?)? nameOnChanged;
+
+  const NameFormWidget({
+    super.key,
+    required this.nameController,
+    required this.nameOnChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonTextFormField(
+      controller: nameController,
+      hintKey: AppLocalizations.of(context)!.lblFullName,
+      keyboardType: TextInputType.text,
+      prefixIcon: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        child: CommonAssetSvgImageWidget(
+          imageString: IconPathsSVG.personIcon,
+          imageColor: AppConstants.mainColor,
+          fit: BoxFit.contain,
+          height: 22,
+          width: 22,
+        ),
+      ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return AppLocalizations.of(context)!.lblNameIsEmpty;
+        } else if (nameValidator(value)) {
+          return AppLocalizations.of(context)!.lblNameBadFormat;
+        } else if (value.length < 2) {
+          return AppLocalizations.of(context)!.lblNameLength;
+        } else {
+          return null;
+        }
+      },
+      onChanged: nameOnChanged,
+    );
+  }
+}

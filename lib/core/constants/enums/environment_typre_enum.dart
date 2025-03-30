@@ -1,0 +1,1 @@
+enum EnvironmentTypeEnum { staging, dev }
