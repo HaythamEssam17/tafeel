@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:clean_arch_demo_las_version/core/constants/asset_paths/image_paths.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Images/common_asset_image_widget.dart';
+import 'package:tafeal_demo/core/constants/asset_paths/image_paths.dart';
+import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +12,7 @@ import '../logic/splash_cubit/splash_cubit.dart';
 import '../logic/splash_cubit/splash_states.dart';
 
 class SplashHomePage extends StatefulWidget {
-  const SplashHomePage({super.key});
+  const SplashHomePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SplashPageState();
@@ -33,8 +33,8 @@ class _SplashPageState extends State<SplashHomePage>
       vsync: this,
       duration: const Duration(milliseconds: 2000),
     )..addListener(() {
-      notifierController.value = controller.value;
-    });
+        notifierController.value = controller.value;
+      });
     controller.forward();
   }
 
@@ -51,19 +51,21 @@ class _SplashPageState extends State<SplashHomePage>
       backgroundColor: AppConstants.lightWhiteColor,
       body: BlocConsumer<SplashCubit, SplashStates>(
         listener: (splashCtx, splashState) {
-          // if (splashState is UserFoundState) {
-          //   Timer(
-          //     const Duration(milliseconds: 2500),
-          //     () => splashCtx.pushReplacementNamed(
-          //       RouteNames.mainBottomNavPageRoute,
-          //     ),
-          //   );
-          // } else if (splashState is UserNotFoundState) {
-          Timer(
-            const Duration(milliseconds: 2500),
-            () => splashCtx.pushReplacementNamed(RouteNames.loginHomePageRoute),
-          );
-          // }
+          if (splashState is UserFoundState) {
+            Timer(
+              const Duration(milliseconds: 2500),
+              () => splashCtx.pushReplacementNamed(
+                RouteNames.usersListHomePage,
+              ),
+            );
+          } else if (splashState is UserNotFoundState) {
+            /// Navigator must redirect the user to LoginPage
+            Timer(
+              const Duration(milliseconds: 2500),
+              () =>
+                  splashCtx.pushReplacementNamed(RouteNames.usersListHomePage),
+            );
+          }
         },
         builder: (splashCtx, splashState) {
           return Center(
@@ -73,8 +75,6 @@ class _SplashPageState extends State<SplashHomePage>
               width: 224,
             ),
           );
-          // return LottieBuilder.asset("assets/images/pmc_splash.json",
-          //     controller: controller, width: double.infinity, height: double.infinity, fit: BoxFit.cover);
         },
       ),
     );

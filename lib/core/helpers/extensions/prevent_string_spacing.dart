@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 extension GetStringWithoutSpacings on String {
   String getStringWithoutSpacings() {
     String firstName = split(" ").first;
@@ -22,10 +19,6 @@ extension GetStringWithoutSpacings on String {
     return "${substring(0, 2)}xxxxxxx${substring(emailIndex)}";
   }
 
-  String addEGPToText(BuildContext context) {
-    return "$this ${AppLocalizations.of(context)!.lblEGP} ";
-  }
-
   String convertStringToSplitChar() {
     final listOfChar = split('');
     var outPut = "";
@@ -35,9 +28,13 @@ extension GetStringWithoutSpacings on String {
     return outPut;
   }
 
-  String toCapitalized() => length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+  String toCapitalized() =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
 
-  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
+  String toTitleCase() => replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => str.toCapitalized())
+      .join(' ');
 
   String replaceArabNumber() {
     final Map<String, String> numbers = {

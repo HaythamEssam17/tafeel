@@ -1,4 +1,4 @@
-import 'package:clean_arch_demo_las_version/core/presentation/routes/route_argument_model.dart';
+import 'package:tafeal_demo/core/presentation/routes/route_argument_model.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExtensions on BuildContext {
@@ -12,22 +12,17 @@ extension ContextExtensions on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
 
   Future<Object?> pushNamed(String routeName, [RouteArgument? arguments]) {
-    return Navigator.pushNamed(
-      this,
-      routeName,
-      arguments: arguments,
-    );
+    return Navigator.pushNamed(this, routeName, arguments: arguments);
   }
 
   Future<Object?> pushNamedAndRemoveUntil(String routeName) {
-    return Navigator.pushNamedAndRemoveUntil(
-      this,
-      routeName,
-      (route) => false,
-    );
+    return Navigator.pushNamedAndRemoveUntil(this, routeName, (route) => false);
   }
 
-  Future<Object?> pushReplacementNamed(String routeName, [RouteArgument? arguments]) {
+  Future<Object?> pushReplacementNamed(
+    String routeName, [
+    RouteArgument? arguments,
+  ]) {
     return Navigator.pushReplacementNamed(
       this,
       routeName,

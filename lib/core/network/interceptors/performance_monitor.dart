@@ -1,7 +1,7 @@
-import 'package:clean_arch_demo_las_version/core/constants/app_constants.dart';
-import 'package:clean_arch_demo_las_version/core/constants/enums/exception_enums.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/shared.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Alert_Dialogs/custom_flutter_toast.dart';
+import 'package:tafeal_demo/core/constants/app_constants.dart';
+import 'package:tafeal_demo/core/constants/enums/exception_enums.dart';
+import 'package:tafeal_demo/core/helpers/shared.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Alert_Dialogs/custom_flutter_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 import 'package:intl/intl.dart' as intl;

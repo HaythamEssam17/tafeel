@@ -1,7 +1,7 @@
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants/app_constants.dart';
 import '../../helpers/shared.dart';
@@ -19,7 +19,7 @@ class EmptyScreen extends StatelessWidget {
   final String? buttonText;
 
   const EmptyScreen({
-    super.key,
+    Key? key,
     required this.imageString,
     required this.titleKey,
     required this.imageHeight,
@@ -28,7 +28,7 @@ class EmptyScreen extends StatelessWidget {
     this.withButton = false,
     this.onTap,
     this.buttonText,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

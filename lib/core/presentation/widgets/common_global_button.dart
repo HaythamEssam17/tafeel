@@ -1,6 +1,6 @@
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
 
 import '../../constants/app_constants.dart';
 import '../../helpers/shared.dart';
@@ -28,7 +28,7 @@ class CommonGlobalButton extends StatelessWidget {
   final Color? borderColor;
 
   const CommonGlobalButton({
-    super.key,
+    Key? key,
     required this.buttonText,
     required this.onPressedFunction,
     this.buttonBackgroundColor = AppConstants.mainColor,
@@ -48,7 +48,7 @@ class CommonGlobalButton extends StatelessWidget {
     this.isEnable = true,
     this.showBorder = false,
     this.borderColor = AppConstants.mainColor,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,19 +62,18 @@ class CommonGlobalButton extends StatelessWidget {
         side: WidgetStateProperty.all<BorderSide>(
           BorderSide(
             width: 1,
-            color:
-                showBorder
-                    ? isLoading || !isEnable
-                        ? AppConstants.shadowColor
-                        : borderColor!
-                    : AppConstants.transparent,
+            color: showBorder
+                ? isLoading || !isEnable
+                    ? AppConstants.shadowColor
+                    : borderColor!
+                : AppConstants.transparent,
           ),
         ),
         shadowColor: WidgetStateProperty.all(
-          shadowBackgroundColor ?? AppConstants.greyColor.withAlpha(30),
+          shadowBackgroundColor ?? AppConstants.greyColor.withOpacity(.3),
         ),
         overlayColor: WidgetStateProperty.all(
-          onPressedColor ?? AppConstants.greyColor.withAlpha(25),
+          onPressedColor ?? AppConstants.greyColor.withOpacity(.25),
         ),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius!)),
@@ -82,54 +81,48 @@ class CommonGlobalButton extends StatelessWidget {
         fixedSize: WidgetStateProperty.all<Size>(
           Size(buttonWidth, buttonHeight),
         ),
-        backgroundColor:
-            isLoading || !isEnable
-                ? WidgetStateProperty.all(AppConstants.shadowColor)
-                : WidgetStateProperty.all(
-                  buttonBackgroundColor ?? AppConstants.mainColor,
-                ),
-      ),
-      child:
-          icon != null
-              ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (!isLoading) icon!,
-                  getSpaceWidth(spaceSize!),
-                  CommonTitleText(
-                    textKey:
-                        isLoading
-                            ? AppLocalizations.of(context)!.lblLoading
-                            : buttonText,
-                    textStyle: context.textTheme.bodyMedium!.copyWith(
-                      fontSize: buttonTextSize!,
-                      fontWeight: buttonTextFontWeight!,
-                      color:
-                          isEnable
-                              ? isLoading
-                                  ? AppConstants.greyColor
-                                  : buttonTextColor!
-                              : AppConstants.greyColor,
-                    ),
-                  ),
-                ],
-              )
-              : CommonTitleText(
-                textKey:
-                    isLoading
-                        ? AppLocalizations.of(context)!.lblLoading
-                        : buttonText,
-                textStyle: context.textTheme.bodyMedium!.copyWith(
-                  fontSize: buttonTextSize!,
-                  fontWeight: buttonTextFontWeight!,
-                  color:
-                      isEnable
-                          ? isLoading
-                              ? AppConstants.greyColor
-                              : buttonTextColor!
-                          : AppConstants.greyColor,
-                ),
+        backgroundColor: isLoading || !isEnable
+            ? WidgetStateProperty.all(AppConstants.shadowColor)
+            : WidgetStateProperty.all(
+                buttonBackgroundColor ?? AppConstants.mainColor,
               ),
+      ),
+      child: icon != null
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (!isLoading) icon!,
+                getSpaceWidth(spaceSize!),
+                CommonTitleText(
+                  textKey: isLoading
+                      ? AppLocalizations.of(context)!.lblLoading
+                      : buttonText,
+                  textStyle: context.textTheme.bodyMedium!.copyWith(
+                    fontSize: buttonTextSize!,
+                    fontWeight: buttonTextFontWeight!,
+                    color: isEnable
+                        ? isLoading
+                            ? AppConstants.greyColor
+                            : buttonTextColor!
+                        : AppConstants.greyColor,
+                  ),
+                ),
+              ],
+            )
+          : CommonTitleText(
+              textKey: isLoading
+                  ? AppLocalizations.of(context)!.lblLoading
+                  : buttonText,
+              textStyle: context.textTheme.bodyMedium!.copyWith(
+                fontSize: buttonTextSize!,
+                fontWeight: buttonTextFontWeight!,
+                color: isEnable
+                    ? isLoading
+                        ? AppConstants.greyColor
+                        : buttonTextColor!
+                    : AppConstants.greyColor,
+              ),
+            ),
     );
   }
 }

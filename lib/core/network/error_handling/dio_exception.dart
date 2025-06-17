@@ -1,4 +1,4 @@
-import 'package:clean_arch_demo_las_version/core/helpers/shared.dart';
+import 'package:tafeal_demo/core/helpers/shared.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 

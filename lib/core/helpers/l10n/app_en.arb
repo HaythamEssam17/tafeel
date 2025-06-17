@@ -1,0 +1,10 @@
+{
+  "language": "العربية",
+  "lblUsersList": "Users List",
+  "lblRetry": "Retry",
+  "lblError": "Error",
+  "lblWrongHappen": "Something went wrong",
+  "lblLoading": "Loading",
+  "lblFullName": "Full Name",
+  "lblFieldIsEmpty": "Field is empty"
+}

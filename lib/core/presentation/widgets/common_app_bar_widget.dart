@@ -1,7 +1,6 @@
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/shadow_bordered_widget.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/routes/route_names.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal_demo/core/helpers/extensions/shadow_bordered_widget.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/app_constants.dart';
@@ -24,7 +23,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Function()? onBackPressed;
 
   const CommonAppBar({
-    super.key,
+    Key? key,
     this.onBackPressed,
     this.withBack = true,
     this.titleWidget,
@@ -37,7 +36,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.customActionWidget,
     this.actionPadding = AppConstants.padding16,
     this.backGroundColor = Colors.white,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,48 +47,44 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: withBack,
       titleSpacing: 0,
       leadingWidth: withBack ? getWidgetWidth(40) : leadingWidth,
-      leading:
-          withBack
-              ? FittedBox(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(width: AppConstants.padding16),
-                    GestureDetector(
-                      onTap: onBackPressed ?? () => context.pop(),
-                      child: Container(
-                        padding: const EdgeInsets.all(AppConstants.padding8),
-                        decoration: const BoxDecoration().appBarBackArrow(),
-                        child: RotatedBox(
-                          quarterTurns:
-                              SharedText.currentLocale == "ar" ? 0 : 2,
-                          child: const CommonAssetSvgImageWidget(
-                            imageString: IconPathsSVG.rightArrowIcon,
-                            height: 24,
-                            imageColor: AppConstants.mainColor,
-                            width: 24,
-                          ),
+      leading: withBack
+          ? FittedBox(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(width: AppConstants.padding16),
+                  GestureDetector(
+                    onTap: onBackPressed ?? () => context.pop(),
+                    child: Container(
+                      padding: const EdgeInsets.all(AppConstants.padding8),
+                      decoration: const BoxDecoration().appBarBackArrow(),
+                      child: RotatedBox(
+                        quarterTurns: SharedText.currentLocale == "ar" ? 0 : 2,
+                        child: const CommonAssetSvgImageWidget(
+                          imageString: IconPathsSVG.rightArrowIcon,
+                          height: 24,
+                          imageColor: AppConstants.mainColor,
+                          width: 24,
                         ),
                       ),
                     ),
-                  ],
-                ),
-              )
-              : leadingWidget != null
-              ? Row(
-                children: [
-                  getSpaceWidth(AppConstants.padding16),
-                  leadingWidget ?? const SizedBox(),
+                  ),
                 ],
-              )
+              ),
+            )
+          : leadingWidget != null
+              ? Row(
+                  children: [
+                    getSpaceWidth(AppConstants.padding16),
+                    leadingWidget ?? const SizedBox(),
+                  ],
+                )
               : const SizedBox(),
       title: titleWidget,
       actions: [
         if (withNotification)
           GestureDetector(
-            onTap: () {
-              context.pushNamed(RouteNames.notificationListScreenRoute);
-            },
+            onTap: () {},
             child: Container(
               width: getWidgetHeight(32),
               height: getWidgetHeight(32),
@@ -98,7 +93,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: AppConstants.lightBlackColor.withAlpha(8),
+                    color: AppConstants.lightBlackColor.withOpacity(0.08),
                     blurRadius: 8,
                     offset: const Offset(0, 0),
                     spreadRadius: 0,

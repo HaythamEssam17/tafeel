@@ -1,13 +1,14 @@
-import 'package:clean_arch_demo_las_version/core/app/main_app_material_widget.dart';
-import 'package:clean_arch_demo_las_version/core/constants/app_constants.dart';
-import 'package:clean_arch_demo_las_version/core/features/connectivity_feature/presentation/logic/connectivity_cubit/connectivity_cubit.dart';
-import 'package:clean_arch_demo_las_version/core/features/connectivity_feature/presentation/logic/connectivity_cubit/connectivity_states.dart';
-import 'package:clean_arch_demo_las_version/core/features/connectivity_feature/presentation/screens/no_connection_screen.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/shared.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/shared_texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+
+import '../constants/app_constants.dart';
+import '../features/connectivity_feature/presentation/logic/connectivity_cubit/connectivity_cubit.dart';
+import '../features/connectivity_feature/presentation/logic/connectivity_cubit/connectivity_states.dart';
+import '../features/connectivity_feature/presentation/screens/no_connection_screen.dart';
+import '../helpers/shared.dart';
+import '../helpers/shared_texts.dart';
+import 'main_app_material_widget.dart';
 
 class AppScaffoldPage extends StatefulWidget {
   final Widget body;

@@ -1,5 +1,5 @@
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/app_constants.dart';
@@ -15,12 +15,12 @@ class SideMenuItemWidget extends StatelessWidget {
   final Color titleColor;
 
   const SideMenuItemWidget({
-    super.key,
+    Key? key,
     required this.title,
     required this.onTab,
     this.titleColor = AppConstants.sideHeaderColor,
     this.trailingWidget,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

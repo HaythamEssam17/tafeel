@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:clean_arch_demo_las_version/core/helpers/shared.dart';
-import 'package:clean_arch_demo_las_version/core/network/interceptors/connectivity_retry_interceptor.dart';
+import 'package:tafeal_demo/core/helpers/shared.dart';
+import 'package:tafeal_demo/core/network/interceptors/connectivity_retry_interceptor.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../app_config/app_configs.dart';
 import '../constants/enums/exception_enums.dart';
-import '../utils/app_config/app_configs.dart';
 import 'error_handling/custom_exception.dart';
 import 'error_handling/dio_exception.dart';
 import 'interceptors/performance_monitor.dart';
@@ -22,6 +22,7 @@ class DioHelper {
 
   // Instantiate the class if it hasn't been created yet.
   static DioHelper get instance {
+    DioHelper.instance;
     devLog('Dio singleton instance --->');
     _instance ??= DioHelper._();
     return _instance!;
@@ -197,12 +198,12 @@ class DioHelper {
       /// Send to SLack Webhook
       dio
           .post(
-            dotenv.env['slack_webHock_url'] ?? '',
-            data: json.encode(request),
-          )
+        dotenv.env['slack_webHock_url'] ?? '',
+        data: json.encode(request),
+      )
           .then((response) {
-            devLog('Slack webhook response: --- ${response.data}');
-          });
+        devLog('Slack webhook response: --- ${response.data}');
+      });
     } catch (e) {
       devLog('Slack webhook exception --- Error --- $e');
 

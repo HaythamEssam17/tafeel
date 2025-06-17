@@ -1,6 +1,6 @@
-import 'package:clean_arch_demo_las_version/core/model/base_model.dart';
-import 'package:clean_arch_demo_las_version/core/network/error_handling/custom_error.dart';
-import 'package:clean_arch_demo_las_version/core/network/error_handling/custom_exception.dart';
+import 'package:tafeal_demo/core/model/base_model.dart';
+import 'package:tafeal_demo/core/network/error_handling/custom_error.dart';
+import 'package:tafeal_demo/core/network/error_handling/custom_exception.dart';
 import 'package:dartz/dartz.dart';
 
 Future<Either<CustomError, BaseModel>> executeAndHandleError(

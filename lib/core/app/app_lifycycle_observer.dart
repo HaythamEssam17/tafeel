@@ -1,13 +1,14 @@
 import 'dart:async';
 
-import 'package:clean_arch_demo_las_version/core/helpers/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../helpers/shared.dart';
 
 class AppLifecycleObserver extends StatefulWidget {
   final Widget child;
 
-  const AppLifecycleObserver({required this.child, super.key});
+  const AppLifecycleObserver({required this.child, Key? key}) : super(key: key);
 
   @override
   State<AppLifecycleObserver> createState() => _AppLifecycleObserverState();

@@ -1,4 +1,0 @@
-enum ReasonKey {
-  deleteReasons,
-  ticketReasons,
-}

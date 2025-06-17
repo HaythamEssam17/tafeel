@@ -1,52 +1,24 @@
 import 'dart:developer' as developer;
 import 'dart:io';
 
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
-import 'package:clean_arch_demo_las_version/core/model/app_security_model.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Alert_Dialogs/custom_flutter_toast.dart';
+import 'package:tafeal_demo/core/model/app_security_model.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Alert_Dialogs/custom_flutter_toast.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:safe_device/safe_device.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
-import '../../features/auth_feature/presentation/logic/login_cubit/login_cubit.dart';
 import '../constants/app_constants.dart';
-import '../constants/enums/exception_enums.dart';
-import '../presentation/routes/route_names.dart';
 import 'shared_texts.dart';
 
 void devLog(String errorMessage) {
   developer.log('developer log: $errorMessage');
-}
-
-void checkUserAuth({
-  required BuildContext context,
-  required CustomStatusCodeErrorType errorType,
-}) {
-  if (errorType == CustomStatusCodeErrorType.unVerified) {
-    final LoginCubit loginCubit = BlocProvider.of<LoginCubit>(context);
-    loginCubit.logOut();
-    context.pushNamedAndRemoveUntil(RouteNames.splashPageRoute);
-  }
-}
-
-/// Calculate %
-String calculatePercentage(String price, String discount) {
-  return ((double.parse(discount) * double.parse(price)) / (100))
-      .toStringAsFixed(2);
-}
-
-/// Calculate Total Price
-String calculateTotalPrice(String price, String discount) {
-  return (double.parse(price) -
-          double.parse(calculatePercentage(price, discount)))
-      .toStringAsFixed(2);
 }
 
 /// Get Widget Height
@@ -71,19 +43,6 @@ SizedBox getSpaceWidth(double width) {
   return SizedBox(width: currentWidth);
 }
 
-///convert from sec to min
-String secToMin(int sec) {
-  return '${sec ~/ 60}:${sec % 60 >= 10 ? sec % 60 : '0${(sec % 60)}'}';
-}
-
-int getDifferenceBetweenStartAndEndDates(DateTime from, DateTime to) {
-  final days = to.difference(from).inDays;
-  final int years = days ~/ 365;
-  final int months = (days - years * 365) ~/ 30;
-
-  return months;
-}
-
 /// This function is to check the app security.
 Future<bool> checkAppSecurity({
   required AppSecurityModel paramsAppCheck,
@@ -104,7 +63,7 @@ Future<bool> checkAppSecurity({
       devLog('Security - isJailBroken: $isJailBroken');
     }
     if (paramsAppCheck.canMockLocation) {
-      canMockLocation = await SafeDevice.isMockLocation;
+      canMockLocation = await SafeDevice.canMockLocation;
       devLog('Security - canMockLocation: $canMockLocation');
     }
     if (paramsAppCheck.onDevMode) {
@@ -116,8 +75,7 @@ Future<bool> checkAppSecurity({
       devLog('Security - onExternalStorage: $onExternalStorage');
     }
 
-    final bool result =
-        (isEmulated ||
+    final bool result = (isEmulated ||
             isJailBroken ||
             canMockLocation ||
             onDevMode ||
@@ -137,9 +95,9 @@ Future<void> setCurrentScreen(
   String firebaseScreenName,
   String firebaseScreenClass,
 ) async {
-  return FirebaseAnalytics.instance.logScreenView(
+  return FirebaseAnalytics.instance.setCurrentScreen(
     screenName: firebaseScreenName,
-    screenClass: firebaseScreenClass,
+    screenClassOverride: firebaseScreenClass,
   );
 }
 
@@ -154,7 +112,7 @@ Future<void> takeScreenShotToGallery(
     delay: const Duration(milliseconds: 500),
   );
   // The image is saved by default with a random number in the gallery.
-  final result = await ImageGallerySaverPlus.saveImage(
+  final result = await ImageGallerySaver.saveImage(
     capturedImage ?? Uint8List(0),
   );
   if (result != null) {
@@ -173,10 +131,9 @@ Future<String?> getDeviceId() async {
   if (Platform.isAndroid) {
     final AndroidDeviceInfo androidDeviceInfo =
         await deviceInfoPlugin.androidInfo;
-    deviceId =
-        androidDeviceInfo.serialNumber == 'unknown'
-            ? androidDeviceInfo.id
-            : '${androidDeviceInfo.id}@${androidDeviceInfo.serialNumber}';
+    deviceId = androidDeviceInfo.serialNumber == 'unknown'
+        ? androidDeviceInfo.id
+        : '${androidDeviceInfo.id}@${androidDeviceInfo.serialNumber}';
   } else if (Platform.isIOS) {
     final IosDeviceInfo iosDeviceInfo = await deviceInfoPlugin.iosInfo;
     deviceId = iosDeviceInfo.identifierForVendor;
@@ -184,11 +141,11 @@ Future<String?> getDeviceId() async {
 
   return deviceId;
 }
-//
-// /// [shareInformation] is a function that share the given value.
-// Future<void> shareInformation(String text, String subject) {
-//   return Share.share(text, subject: subject);
-// }
+
+/// [shareInformation] is a function that share the given value.
+Future<void> shareInformation(String text, String subject) {
+  return Share.share(text, subject: subject);
+}
 
 Future<String?> getSavedDir() async {
   String? externalStorageDirPath;

@@ -20,7 +20,8 @@ class BaseModel {
         data: json["data"],
       );
     } catch (ex) {
-      throw CustomException(CustomStatusCodeErrorType.parsing, 'cant pars base model');
+      throw CustomException(
+          CustomStatusCodeErrorType.parsing, 'cant pars base model');
     }
   }
 

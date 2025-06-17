@@ -1,24 +1,38 @@
-import 'package:clean_arch_demo_las_version/core/helpers/shared.dart';
+import 'package:tafeal_demo/core/helpers/shared.dart';
 
 import '../../domain/entities/auth_base_entity.dart';
 
 class AuthBaseModel extends AuthBaseEntity {
   AuthBaseModel({
-    super.name,
-    super.email,
-    super.phone,
+    String? name,
+    String? email,
+    String? phone,
     String? address,
-    super.active,
-    super.verified,
-    super.id,
-    super.image,
-    super.otp,
-    super.gender,
-    super.token,
-    super.isNotified,
-    super.referCode,
-    super.balance,
-  });
+    int? active,
+    int? verified,
+    int? id,
+    String? image,
+    String? otp,
+    String? gender,
+    String? token,
+    bool? isNotified,
+    String? referCode,
+    String? balance,
+  }) : super(
+         id: id,
+         image: image,
+         name: name,
+         active: active,
+         email: email,
+         phone: phone,
+         verified: verified,
+         otp: otp,
+         gender: gender,
+         token: token,
+         isNotified: isNotified,
+         referCode: referCode,
+         balance: balance,
+       );
 
   factory AuthBaseModel.fromJson(Map<String, dynamic> json) {
     try {

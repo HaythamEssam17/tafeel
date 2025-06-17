@@ -10,37 +10,36 @@ class ListLoaderWidget extends StatelessWidget {
   final double itemHeight;
   final double itemWidth;
   final double itemRadius;
-  final EdgeInsetsGeometry? padding;
+ final EdgeInsetsGeometry? padding;
   const ListLoaderWidget({
-    super.key,
+    Key? key,
     this.direction = Axis.vertical,
     this.itemCount = 5,
     this.itemHeight = 40,
     this.itemWidth = 300,
     this.itemRadius = AppConstants.borderRadius8,
-    this.padding = EdgeInsets.zero,
-  });
+    this.padding=EdgeInsets.zero,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      shrinkWrap: true,
-      padding: padding,
-      physics: const BouncingScrollPhysics(),
-      scrollDirection: direction!,
-      itemBuilder: (context, index) {
-        return LoadingShimmer(
-          height: itemHeight,
-          width: itemWidth,
-          radius: itemRadius,
-        );
-      },
-      separatorBuilder: (context, index) {
-        return direction == Axis.vertical
-            ? getSpaceHeight(AppConstants.padding8)
-            : getSpaceWidth(AppConstants.padding8);
-      },
-      itemCount: itemCount!,
-    );
+        shrinkWrap: true,
+        padding: padding,
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: direction!,
+        itemBuilder: (context, index) {
+          return LoadingShimmer(
+            height: itemHeight,
+            width: itemWidth,
+            radius: itemRadius,
+          );
+        },
+        separatorBuilder: (context, index) {
+          return direction == Axis.vertical
+              ? getSpaceHeight(AppConstants.padding8)
+              : getSpaceWidth(AppConstants.padding8);
+        },
+        itemCount: itemCount!);
   }
 }

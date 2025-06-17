@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/constants/app_constants.dart';
 
 class SideMenuDivider extends StatelessWidget {
-  const SideMenuDivider({super.key});
+  const SideMenuDivider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

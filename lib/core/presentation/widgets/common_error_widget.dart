@@ -1,7 +1,7 @@
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
 
 import '../../constants/app_constants.dart';
 import '../../helpers/shared.dart';
@@ -14,11 +14,11 @@ class CommonError extends StatelessWidget {
   final Function()? onTap;
 
   const CommonError({
-    super.key,
+    Key? key,
     this.errorMassage,
     this.withButton = false,
     this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class CommonError extends StatelessWidget {
         ),
         getSpaceHeight(AppConstants.padding16),
         CommonTitleText(
-          textKey: AppLocalizations.of(context)!.lblTechnicalError,
+          textKey: AppLocalizations.of(context)!.lblError,
           textStyle: context.textTheme.displayMedium!,
           textOverflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
@@ -46,10 +46,9 @@ class CommonError extends StatelessWidget {
           children: [
             Expanded(
               child: CommonTitleText(
-                textKey:
-                    errorMassage == null
-                        ? AppLocalizations.of(context)!.lblWrongHappen
-                        : errorMassage!.isEmpty
+                textKey: errorMassage == null
+                    ? AppLocalizations.of(context)!.lblWrongHappen
+                    : errorMassage!.isEmpty
                         ? AppLocalizations.of(context)!.lblWrongHappen
                         : errorMassage!,
                 textStyle: context.textTheme.headlineMedium!,
@@ -64,7 +63,7 @@ class CommonError extends StatelessWidget {
           getSpaceHeight(AppConstants.padding16),
           CommonGlobalButton(
             onPressedFunction: onTap ?? () {},
-            buttonText: AppLocalizations.of(context)!.lblTryAgain,
+            buttonText: AppLocalizations.of(context)!.lblRetry,
           ),
         ],
       ],

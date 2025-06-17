@@ -1,0 +1,10 @@
+{
+  "language": "English",
+  "lblUsersList": "قائمة المستخدمين",
+  "lblRetry": "اعاده المحاوله",
+  "lblError": "خطآ",
+  "lblWrongHappen": "حدث خطآ ما",
+  "lblLoading": "تحميل",
+  "lblFullName": "الاسم الكامل",
+  "lblFieldIsEmpty": "الحقل فارغ"
+}

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:clean_arch_demo_las_version/core/constants/app_constants.dart';
-import 'package:clean_arch_demo_las_version/core/constants/asset_paths/image_paths.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/double_extensions.dart';
+import 'package:tafeal_demo/core/constants/app_constants.dart';
+import 'package:tafeal_demo/core/constants/asset_paths/image_paths.dart';
+import 'package:tafeal_demo/core/helpers/extensions/double_extensions.dart';
 import 'package:flutter/material.dart';
 
 import 'common_asset_image_widget.dart';
@@ -18,7 +18,7 @@ class CommonCachedImageWidget extends StatelessWidget {
   final bool? isProfile;
   final Color? errorImageColor;
   const CommonCachedImageWidget({
-    super.key,
+    Key? key,
     required this.imageUrl,
     required this.width,
     required this.height,
@@ -28,7 +28,7 @@ class CommonCachedImageWidget extends StatelessWidget {
     this.fit = BoxFit.fill,
     this.imagePlaceHolder,
     this.errorImageColor,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

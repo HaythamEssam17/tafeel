@@ -42,46 +42,46 @@ class CommonTextFormField extends StatelessWidget {
   final double hintFontSize;
   final Color? focuseAndErrorColor;
 
-  const CommonTextFormField({
-    super.key,
-    this.hintKey,
-    this.controller,
-    this.keyboardType = TextInputType.name,
-    this.onTap,
-    this.enabled = true,
-    this.isSelected = false,
-    this.isObscureText = false,
-    this.evaluation = true,
-    this.fieldWidth,
-    this.fieldHeight,
-    this.isDigitOnly = false,
-    this.minLines = 1,
-    this.maxLines = 4,
-    this.validator,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.onChanged,
-    this.onSaved,
-    this.borderColor = AppConstants.borderInputColor,
-    this.filledColor = AppConstants.lightWhiteColor,
-    this.textInputColor = AppConstants.textInputColor,
-    this.labelHintStyle = AppConstants.textInputColor,
-    this.labelErrorStyle = AppConstants.lightRedColor,
-    this.inputFormatter,
-    this.isReadOnly = false,
-    this.action = TextInputAction.next,
-    this.labelHintTextAlign = TextAlign.start,
-    this.radius = AppConstants.borderRadius24,
-    this.alignMultipleLines = false,
-    this.fieldFocusNode,
-    this.blurRadius = 40,
-    this.shadowColor = AppConstants.shadowColor,
-    this.shadowOffset = const Offset(0, 8),
-    this.contentPaddingHorizontal = 12,
-    this.contentPaddingVertical = 14.0,
-    this.hintFontSize = AppConstants.fontSize14,
-    this.focuseAndErrorColor,
-  });
+  const CommonTextFormField(
+      {Key? key,
+      this.hintKey,
+      this.controller,
+      this.keyboardType = TextInputType.name,
+      this.onTap,
+      this.enabled = true,
+      this.isSelected = false,
+      this.isObscureText = false,
+      this.evaluation = true,
+      this.fieldWidth,
+      this.fieldHeight,
+      this.isDigitOnly = false,
+      this.minLines = 1,
+      this.maxLines = 4,
+      this.validator,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.onChanged,
+      this.onSaved,
+      this.borderColor = AppConstants.borderInputColor,
+      this.filledColor = AppConstants.lightWhiteColor,
+      this.textInputColor = AppConstants.textInputColor,
+      this.labelHintStyle = AppConstants.textInputColor,
+      this.labelErrorStyle = AppConstants.lightRedColor,
+      this.inputFormatter,
+      this.isReadOnly = false,
+      this.action = TextInputAction.next,
+      this.labelHintTextAlign = TextAlign.start,
+      this.radius = AppConstants.borderRadius24,
+      this.alignMultipleLines = false,
+      this.fieldFocusNode,
+      this.blurRadius = 40,
+      this.shadowColor = AppConstants.shadowColor,
+      this.shadowOffset = const Offset(0, 8),
+      this.contentPaddingHorizontal = 12,
+      this.contentPaddingVertical = 14.0,
+      this.hintFontSize = AppConstants.fontSize14,
+      this.focuseAndErrorColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -106,26 +106,28 @@ class CommonTextFormField extends StatelessWidget {
           focusNode: fieldFocusNode,
           textInputAction: action,
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
-            color: textInputColor,
-            fontSize: AppConstants.fontSize14,
-            fontWeight: FontWeight.w500,
-          ),
+                color: textInputColor,
+                fontSize: AppConstants.fontSize14,
+                fontWeight: FontWeight.w500,
+              ),
           inputFormatters: inputFormatter,
           validator: validator,
           cursorColor: AppConstants.mainColor,
           decoration: InputDecoration(
             labelText: hintKey,
-            hintStyle: Theme.of(context).textTheme.titleMedium!
+            hintStyle: Theme.of(context)
+                .textTheme
+                .titleMedium!
                 .copyWith(fontSize: hintFontSize, fontWeight: FontWeight.w500)
-                .apply(color: labelHintStyle),
+                .apply(
+                  color: labelHintStyle,
+                ),
             alignLabelWithHint: alignMultipleLines,
             floatingLabelBehavior: FloatingLabelBehavior.auto,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius!),
               borderSide: BorderSide(
-                color: focuseAndErrorColor ?? borderColor!,
-                width: 0.0,
-              ),
+                  color: focuseAndErrorColor ?? borderColor!, width: 0.0),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius!),
@@ -146,36 +148,40 @@ class CommonTextFormField extends StatelessWidget {
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(radius!)),
-              borderSide: BorderSide(
-                color: focuseAndErrorColor ?? AppConstants.lightRedColor,
-                width: 0,
-              ),
-            ),
+                borderRadius: BorderRadius.all(Radius.circular(radius!)),
+                borderSide: BorderSide(
+                    color: focuseAndErrorColor ?? AppConstants.lightRedColor,
+                    width: 0)),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(radius!)),
-              borderSide: BorderSide(
-                color: focuseAndErrorColor ?? AppConstants.lightRedColor,
-                width: 1,
-              ),
-            ),
+                borderRadius: BorderRadius.all(Radius.circular(radius!)),
+                borderSide: BorderSide(
+                    color: focuseAndErrorColor ?? AppConstants.lightRedColor,
+                    width: 1)),
             errorStyle: const TextStyle(
-              fontSize: AppConstants.fontSize12,
-              height: 0.5,
-              fontWeight: FontWeight.w500,
-              overflow: TextOverflow.fade,
-            ).apply(color: labelErrorStyle),
-            contentPadding: EdgeInsets.symmetric(
-              vertical: contentPaddingVertical!,
-              horizontal: contentPaddingHorizontal!,
+                    fontSize: AppConstants.fontSize12,
+                    height: 0.5,
+                    fontWeight: FontWeight.w500,
+                    overflow: TextOverflow.fade)
+                .apply(
+              color: labelErrorStyle,
             ),
+            contentPadding: EdgeInsets.symmetric(
+                vertical: contentPaddingVertical!,
+                horizontal: contentPaddingHorizontal!),
             fillColor: filledColor!,
             isDense: true,
             filled: true,
             prefixIcon: prefixIcon,
-            labelStyle: Theme.of(context).textTheme.titleMedium!
-                .copyWith(fontSize: 14, fontWeight: FontWeight.w500)
-                .apply(color: AppConstants.greyColor),
+            labelStyle: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                )
+                .apply(
+                  color: AppConstants.greyColor,
+                ),
             suffixIcon: suffixIcon,
           ),
         ),

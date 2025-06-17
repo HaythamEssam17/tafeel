@@ -3,55 +3,6 @@ import 'dart:ui' as ui show TextHeightBehavior;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-// class CommonTitleText extends StatelessWidget {
-//   final String textKey;
-//   final Color textColor;
-//   final FontWeight textWeight;
-//   final double textFontSize;
-//   final double minTextFontSize;
-//   final TextAlign textAlign;
-//   final int lines;
-//   final TextOverflow textOverflow;
-//   final TextDecoration? textDecoration;
-//   final double? textHeight;
-//   final TextStyle? textStyle;
-
-//   const CommonTitleText({
-//     Key? key,
-//     required this.textKey,
-//     this.textStyle,
-//     this.textColor = AppConstants.mainTextColor,
-//     this.textWeight = FontWeight.w600,
-//     this.textFontSize = AppConstants.fontSize16,
-//     this.minTextFontSize = 9,
-//     this.textAlign = TextAlign.start,
-//     this.lines = 1,
-//     this.textOverflow = TextOverflow.visible,
-//     this.textHeight = 1.3,
-//     this.textDecoration,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AutoSizeText(
-//       textKey,
-//       overflow: TextOverflow.ellipsis,
-//       minFontSize: minTextFontSize,
-//       // style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-//       //       color: textColor,
-//       //       fontSize: textFontSize,
-//       //       fontWeight: textWeight,
-//       //       overflow: textOverflow,
-//       //       decoration: textDecoration,
-//       //       height: textHeight,
-//       //     ),
-//       style: textStyle,
-//       textAlign: textAlign,
-//       maxLines: lines,
-//     );
-//   }
-// }
-
 class CommonTitleText extends StatelessWidget {
   const CommonTitleText({
     required this.textKey,
@@ -128,16 +79,20 @@ class CommonTitleText extends StatelessWidget {
       effectiveTextStyle = defaultTextStyle.style.merge(textStyle);
     }
     if (MediaQuery.boldTextOf(context)) {
-      effectiveTextStyle = effectiveTextStyle!.merge(const TextStyle(fontWeight: FontWeight.bold));
+      effectiveTextStyle = effectiveTextStyle!
+          .merge(const TextStyle(fontWeight: FontWeight.bold));
     }
     final SelectionRegistrar? registrar = SelectionContainer.maybeOf(context);
     Widget result = RichText(
       textAlign: textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start,
       textDirection:
           textDirection, // RichText uses Directionality.of to obtain a default if this is null.
-      locale: locale, // RichText uses Localizations.localeOf to obtain a default if this is null
+      locale:
+          locale, // RichText uses Localizations.localeOf to obtain a default if this is null
       softWrap: softWrap ?? defaultTextStyle.softWrap,
-      overflow: textOverflow ?? effectiveTextStyle?.overflow ?? defaultTextStyle.overflow,
+      overflow: textOverflow ??
+          effectiveTextStyle?.overflow ??
+          defaultTextStyle.overflow,
       maxLines: maxLines ?? defaultTextStyle.maxLines,
       textScaler: TextScaler.linear(textScaleFactor ?? 1.0),
       strutStyle: strutStyle,
@@ -157,7 +112,8 @@ class CommonTitleText extends StatelessWidget {
     );
     if (registrar != null) {
       result = MouseRegion(
-        cursor: DefaultSelectionStyle.of(context).mouseCursor ?? SystemMouseCursors.text,
+        cursor: DefaultSelectionStyle.of(context).mouseCursor ??
+            SystemMouseCursors.text,
         child: result,
       );
     }
@@ -178,23 +134,29 @@ class CommonTitleText extends StatelessWidget {
     super.debugFillProperties(properties);
     properties.add(StringProperty('data', textKey, showName: false));
     if (textSpan != null) {
-      properties.add(
-          textSpan!.toDiagnosticsNode(name: 'textSpan', style: DiagnosticsTreeStyle.transition));
+      properties.add(textSpan!.toDiagnosticsNode(
+          name: 'textSpan', style: DiagnosticsTreeStyle.transition));
     }
     textStyle?.debugFillProperties(properties);
-    properties.add(EnumProperty<TextAlign>('textAlign', textAlign, defaultValue: null));
-    properties.add(EnumProperty<TextDirection>('textDirection', textDirection, defaultValue: null));
-    properties.add(DiagnosticsProperty<Locale>('locale', locale, defaultValue: null));
+    properties.add(
+        EnumProperty<TextAlign>('textAlign', textAlign, defaultValue: null));
+    properties.add(EnumProperty<TextDirection>('textDirection', textDirection,
+        defaultValue: null));
+    properties
+        .add(DiagnosticsProperty<Locale>('locale', locale, defaultValue: null));
     properties.add(FlagProperty('softWrap',
         value: softWrap,
         ifTrue: 'wrapping at box width',
         ifFalse: 'no wrapping except at line break characters',
         showName: true));
-    properties.add(EnumProperty<TextOverflow>('overflow', textOverflow, defaultValue: null));
-    properties.add(DoubleProperty('textScaleFactor', textScaleFactor, defaultValue: null));
+    properties.add(EnumProperty<TextOverflow>('overflow', textOverflow,
+        defaultValue: null));
+    properties.add(
+        DoubleProperty('textScaleFactor', textScaleFactor, defaultValue: null));
     properties.add(IntProperty('maxLines', maxLines, defaultValue: null));
-    properties
-        .add(EnumProperty<TextWidthBasis>('textWidthBasis', textWidthBasis, defaultValue: null));
+    properties.add(EnumProperty<TextWidthBasis>(
+        'textWidthBasis', textWidthBasis,
+        defaultValue: null));
     properties.add(DiagnosticsProperty<ui.TextHeightBehavior>(
         'textHeightBehavior', textHeightBehavior,
         defaultValue: null));

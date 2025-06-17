@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:clean_arch_demo_las_version/core/helpers/shared.dart';
+import 'package:tafeal_demo/core/helpers/shared.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 
 class RetryOnConnectionChangeInterceptor extends Interceptor {
   final Dio dio;
   final Connectivity connectivity;
-  late StreamSubscription<List<ConnectivityResult>> connectivitySubscription;
+  late StreamSubscription<ConnectivityResult> connectivitySubscription;
 
   RetryOnConnectionChangeInterceptor({
     required this.dio,
@@ -15,9 +15,9 @@ class RetryOnConnectionChangeInterceptor extends Interceptor {
   }) {
     // Listen for connectivity changes
     connectivitySubscription = connectivity.onConnectivityChanged.listen((
-      List<ConnectivityResult> result,
+      ConnectivityResult result,
     ) {
-      if (result.isEmpty || result[0] == ConnectivityResult.none) {
+      if (result == ConnectivityResult.none) {
         devLog('===>>> Interceptor Internet Disconnected ===>>>');
       } else {
         devLog('===>>> Interceptor Internet Connected ===>>>');
@@ -54,8 +54,8 @@ class RetryOnConnectionChangeInterceptor extends Interceptor {
   Future<void> _waitForConnection() async {
     final Completer<void> completer = Completer<void>();
 
-    connectivitySubscription.onData((result) {
-      if (result.isEmpty || result[0] != ConnectivityResult.none) {
+    connectivitySubscription.onData((ConnectivityResult result) {
+      if (result != ConnectivityResult.none) {
         completer.complete();
       }
     });

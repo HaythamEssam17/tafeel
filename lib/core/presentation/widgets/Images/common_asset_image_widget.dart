@@ -1,4 +1,4 @@
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/double_extensions.dart';
+import 'package:tafeal_demo/core/helpers/extensions/double_extensions.dart';
 import 'package:flutter/material.dart';
 
 class CommonAssetImageWidget extends StatelessWidget {
@@ -13,7 +13,7 @@ class CommonAssetImageWidget extends StatelessWidget {
   final Function()? onTapImage;
 
   const CommonAssetImageWidget({
-    super.key,
+    Key? key,
     required this.imageString,
     required this.height,
     required this.width,
@@ -21,7 +21,7 @@ class CommonAssetImageWidget extends StatelessWidget {
     this.radius = 0.0,
     this.fit = BoxFit.contain,
     this.onTapImage,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,14 +1,15 @@
-import 'package:clean_arch_demo_las_version/core/constants/app_constants.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/responsive_ui/device_info.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/responsive_ui/ui_components.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/shared_texts.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/routes/route_generator.dart';
-import 'package:clean_arch_demo_las_version/core/utils/theme/app_theme.dart';
-import 'package:clean_arch_demo_las_version/features/language_feature/logic/language_cubit/language_cubit.dart';
-import 'package:clean_arch_demo_las_version/features/language_feature/logic/language_cubit/language_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
+
+import '../../features/language_feature/logic/language_cubit/language_cubit.dart';
+import '../../features/language_feature/logic/language_cubit/language_states.dart';
+import '../constants/app_constants.dart';
+import '../helpers/responsive_ui/device_info.dart';
+import '../helpers/responsive_ui/ui_components.dart';
+import '../helpers/shared_texts.dart';
+import '../presentation/routes/route_generator.dart';
+import '../utils/theme/app_theme.dart';
 
 class AppMaterialWidget extends StatelessWidget {
   final Widget homeWidget;
@@ -23,10 +24,9 @@ class AppMaterialWidget extends StatelessWidget {
         return MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
           title: AppConstants.appName,
-          theme:
-              LangCubit.get(context).appLocal.languageCode == 'ar'
-                  ? AppTheme.arabicTheme()
-                  : AppTheme.englishTheme(),
+          theme: LangCubit.get(context).appLocal.languageCode == 'ar'
+              ? AppTheme.arabicTheme()
+              : AppTheme.englishTheme(),
           debugShowCheckedModeBanner: false,
           locale: LangCubit.get(context).appLocal,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -47,7 +47,8 @@ class AppMaterialWidget extends StatelessWidget {
                 SharedText.screenWidth = deviceInfo.screenHeight;
                 SharedText.deviceType = deviceInfo;
               }
-              // SharedText.currentLocale = LangCubit.get(context).appLocal.languageCode;
+              SharedText.currentLocale =
+                  LangCubit.get(context).appLocal.languageCode;
 
               return homeWidget;
             },

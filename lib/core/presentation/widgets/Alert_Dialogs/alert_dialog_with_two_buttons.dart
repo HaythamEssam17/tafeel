@@ -1,9 +1,9 @@
-import 'package:clean_arch_demo_las_version/core/constants/app_constants.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/extensions/context_extensions.dart';
-import 'package:clean_arch_demo_las_version/core/helpers/shared.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Images/common_asset_image_widget.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/common_global_button.dart';
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/common_title_text.dart';
+import 'package:tafeal_demo/core/constants/app_constants.dart';
+import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal_demo/core/helpers/shared.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_image_widget.dart';
+import 'package:tafeal_demo/core/presentation/widgets/common_global_button.dart';
+import 'package:tafeal_demo/core/presentation/widgets/common_title_text.dart';
 import 'package:flutter/material.dart';
 
 Future<void> showAlertDialogWithTwoButton({
@@ -27,7 +27,7 @@ Future<void> showAlertDialogWithTwoButton({
   Color secondButtonTextColor = AppConstants.mainColor,
 }) async {
   return showDialog(
-    barrierColor: Colors.black.withAlpha(33),
+    barrierColor: Colors.black.withOpacity(0.33),
     context: context,
     builder: (contextDialog) {
       return Dialog(

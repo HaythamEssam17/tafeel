@@ -1,6 +1,6 @@
-import 'package:clean_arch_demo_las_version/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
 
 import '../../../constants/app_constants.dart';
 import '../../../constants/asset_paths/icon_path.dart';
@@ -12,10 +12,10 @@ class NameFormWidget extends StatelessWidget {
   final String? Function(String?)? nameOnChanged;
 
   const NameFormWidget({
-    super.key,
+    Key? key,
     required this.nameController,
     required this.nameOnChanged,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,11 @@ class NameFormWidget extends StatelessWidget {
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return AppLocalizations.of(context)!.lblNameIsEmpty;
+          return AppLocalizations.of(context)!.lblFieldIsEmpty;
         } else if (nameValidator(value)) {
-          return AppLocalizations.of(context)!.lblNameBadFormat;
+          return 'AppLocalizations.of(context)!.lblNameBadFormat';
         } else if (value.length < 2) {
-          return AppLocalizations.of(context)!.lblNameLength;
+          return 'AppLocalizations.of(context)!.lblNameLength';
         } else {
           return null;
         }

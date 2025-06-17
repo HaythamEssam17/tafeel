@@ -6,7 +6,7 @@ import 'get_device_type.dart';
 class InfoComponents extends StatelessWidget {
   final Widget Function(BuildContext context, DeviceInfo deviceInfo) builder;
 
-  const InfoComponents({super.key, required this.builder});
+  const InfoComponents({Key? key, required this.builder}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
