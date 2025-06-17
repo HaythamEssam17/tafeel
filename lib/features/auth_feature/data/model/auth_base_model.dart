@@ -1,4 +1,4 @@
-import 'package:tafeal_demo/core/helpers/shared.dart';
+import 'package:tafeal/core/helpers/shared.dart';
 
 import '../../domain/entities/auth_base_entity.dart';
 

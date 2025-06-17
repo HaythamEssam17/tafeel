@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/auth_feature/presentation/logic/splash_cubit/splash_cubit.dart';
 import '../../features/language_feature/logic/language_cubit/language_cubit.dart';
+import '../../features/users_list/presentation/logic/user_details_cubit/user_details_cubit.dart';
+import '../../features/users_list/presentation/logic/users_cubit/user_cubit.dart';
 import '../features/connectivity_feature/presentation/logic/connectivity_cubit/connectivity_cubit.dart';
 import 'injection_container.dart' as di;
 
@@ -10,7 +12,7 @@ class MultiBlocProvidersPage extends StatefulWidget {
   final Widget body;
 
   const MultiBlocProvidersPage({Key? key, required this.body})
-      : super(key: key);
+    : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _MultiBlocProvidersPageState();
@@ -30,6 +32,10 @@ class _MultiBlocProvidersPageState extends State<MultiBlocProvidersPage> {
           create: (_) => di.sl<ConnectivityCubit>(),
         ),
         BlocProvider<SplashCubit>(create: (_) => di.sl<SplashCubit>()),
+        BlocProvider<UserCubit>(create: (_) => di.sl<UserCubit>()),
+        BlocProvider<UserDetailsCubit>(
+          create: (_) => di.sl<UserDetailsCubit>(),
+        ),
       ],
       child: widget.body,
     );

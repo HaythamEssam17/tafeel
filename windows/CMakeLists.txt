@@ -1,10 +1,10 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
-project(clean_arch_demo_las_version_last_version LANGUAGES CXX)
+project(tafeal_last_version LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-set(BINARY_NAME "clean_arch_demo_las_version_last_version")
+set(BINARY_NAME "tafeal_last_version")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

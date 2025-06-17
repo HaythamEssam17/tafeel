@@ -1,6 +1,4 @@
 class ImagePaths {
-  static String defaultJPGImage = 'default.jpg';
-  static String defaultPNGImage = 'default.png';
-  static String catsImage = 'cats.jpeg';
-  static String faceImage = 'face.jpg';
+  static String logo = 'Tafeel_logo.svg';
+  static String logoPNG = 'Tafeel_logo.png';
 }

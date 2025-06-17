@@ -7,7 +7,7 @@ import 'app_lifycycle_observer.dart';
 import 'main_app_material_widget.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return const AppLifecycleObserver(

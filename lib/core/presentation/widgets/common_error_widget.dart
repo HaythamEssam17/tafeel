@@ -1,7 +1,7 @@
-import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
-import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
+import 'package:tafeal/core/helpers/l10n/app_localizations.dart';
 
 import '../../constants/app_constants.dart';
 import '../../helpers/shared.dart';

@@ -31,4 +31,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get lblFieldIsEmpty => 'الحقل فارغ';
+
+  @override
+  String get lblNoUsers => 'لا يوجد مستخدمين';
+
+  @override
+  String get lblUserDetails => 'بيانات المستخدم';
 }

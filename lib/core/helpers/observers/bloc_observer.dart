@@ -1,4 +1,4 @@
-import 'package:tafeal_demo/core/helpers/shared.dart';
+import 'package:tafeal/core/helpers/shared.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyBlocObserver extends BlocObserver {

@@ -1,10 +1,11 @@
-import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
-import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/app_constants.dart';
 import '../../../../../core/helpers/shared.dart';
 import '../../../../../core/presentation/widgets/common_title_text.dart';
+import '../../../constants/app_colors.dart';
 import '../../../constants/asset_paths/icon_path.dart';
 import '../../../helpers/shared_texts.dart';
 
@@ -15,12 +16,12 @@ class SideMenuItemWidget extends StatelessWidget {
   final Color titleColor;
 
   const SideMenuItemWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.onTab,
-    this.titleColor = AppConstants.sideHeaderColor,
+    this.titleColor = AppColors.sideHeaderColor,
     this.trailingWidget,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

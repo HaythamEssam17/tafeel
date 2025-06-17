@@ -1,4 +1,4 @@
-import 'package:tafeal_demo/core/helpers/extensions/double_extensions.dart';
+import 'package:tafeal/core/helpers/extensions/double_extensions.dart';
 import 'package:flutter/material.dart';
 
 class CommonAssetImageWidget extends StatelessWidget {

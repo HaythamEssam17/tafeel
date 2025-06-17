@@ -6,5 +6,7 @@
   "lblWrongHappen": "Something went wrong",
   "lblLoading": "Loading",
   "lblFullName": "Full Name",
-  "lblFieldIsEmpty": "Field is empty"
+  "lblFieldIsEmpty": "Field is empty",
+  "lblNoUsers": "No users found",
+  "lblUserDetails": "User Details"
 }

@@ -1,4 +1,4 @@
-import 'package:tafeal_demo/core/helpers/shared_texts.dart';
+import 'package:tafeal/core/helpers/shared_texts.dart';
 
 extension DoubleExtensions on double {
   double getWidgetHeight() {

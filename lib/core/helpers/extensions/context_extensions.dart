@@ -1,4 +1,4 @@
-import 'package:tafeal_demo/core/presentation/routes/route_argument_model.dart';
+import 'package:tafeal/core/presentation/routes/route_argument_model.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExtensions on BuildContext {

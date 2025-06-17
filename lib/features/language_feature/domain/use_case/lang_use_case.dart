@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
+import 'package:tafeal/core/helpers/l10n/app_localizations.dart';
 
 import '../../../../core/helpers/shared_texts.dart';
 import '../interface/lang_interface.dart';

@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:tafeal_demo/core/constants/app_constants.dart';
-import 'package:tafeal_demo/core/constants/asset_paths/image_paths.dart';
-import 'package:tafeal_demo/core/helpers/extensions/double_extensions.dart';
+import 'package:tafeal/core/constants/asset_paths/image_paths.dart';
+import 'package:tafeal/core/helpers/extensions/double_extensions.dart';
 import 'package:flutter/material.dart';
 
-import 'common_asset_image_widget.dart';
+import '../../../constants/app_colors.dart';
 import 'common_asset_svg_image_widget.dart';
 
 class CommonCachedImageWidget extends StatelessWidget {
@@ -13,22 +12,23 @@ class CommonCachedImageWidget extends StatelessWidget {
   final double width;
   final double height;
   final double? radius;
-  final BoxFit? fit;
+  final BoxFit fit;
   final bool? isCircular;
   final bool? isProfile;
   final Color? errorImageColor;
+
   const CommonCachedImageWidget({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.width,
     required this.height,
     this.isCircular = false,
     this.isProfile = false,
     this.radius = 0.0,
-    this.fit = BoxFit.fill,
+    this.fit = BoxFit.cover,
     this.imagePlaceHolder,
     this.errorImageColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -58,24 +58,24 @@ class CommonCachedImageWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius!),
             ),
             child: const Center(
-              child: CircularProgressIndicator(color: AppConstants.mainColor),
+              child: CircularProgressIndicator(color: AppColors.mainColor),
             ),
           ),
       errorWidget:
           (context, url, error) =>
               isProfile!
-                  ? CommonAssetImageWidget(
-                    imageString: ImagePaths.defaultPNGImage,
+                  ? CommonAssetSvgImageWidget(
+                    imageString: ImagePaths.logo,
                     height: imageHeight,
                     width: imageWidth,
-                    radius: radius,
+                    radius: radius ?? 0,
                     fit: fit,
                   )
                   : CommonAssetSvgImageWidget(
-                    imageString: imagePlaceHolder ?? 'logo_cuted.svg',
+                    imageString: imagePlaceHolder ?? ImagePaths.logo,
                     height: imageHeight,
                     width: imageWidth,
-                    fit: fit!,
+                    fit: fit,
                     radius: radius!,
                     isCircular: isCircular!,
                     imageColor: errorImageColor,

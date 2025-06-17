@@ -64,7 +64,7 @@
     </queries>
 
     <application
-        android:label="clean_arch_demo_las_version_last_version"
+        android:label="tafeal_last_version"
         android:name="${applicationName}"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">

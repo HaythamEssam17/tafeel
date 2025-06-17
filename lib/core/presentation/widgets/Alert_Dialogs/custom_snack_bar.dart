@@ -1,7 +1,7 @@
-import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal/core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/app_constants.dart';
+import '../../../constants/app_colors.dart';
 import '../../../helpers/shared.dart';
 import '../common_title_text.dart';
 
@@ -11,13 +11,13 @@ void showSnackBar({
   Color? color,
   double? height = 150,
 }) {
-  final Color backgroundColor = color ?? AppConstants.mainColor;
+  final Color backgroundColor = color ?? AppColors.mainColor;
 
   final snackBar = SnackBar(
     content: CommonTitleText(
       textKey: title,
       textStyle: context.textTheme.bodyMedium!.copyWith(
-        color: AppConstants.lightWhiteColor,
+        color: AppColors.lightWhiteColor,
         fontWeight: FontWeight.w700,
       ),
       maxLines: 2,

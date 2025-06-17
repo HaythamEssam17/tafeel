@@ -1,7 +1,6 @@
 class RouteArgument {
   String? sourcePage;
+  int? selectedUserId;
 
-  RouteArgument({
-    this.sourcePage = '',
-  });
+  RouteArgument({this.sourcePage = '', this.selectedUserId = -1});
 }

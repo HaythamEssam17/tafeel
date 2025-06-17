@@ -5,7 +5,7 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = clean_arch_demo_las_version_last_version
+PRODUCT_NAME = tafeal_last_version
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = com.cleanarch.demo.cleanArchDemoLastVersion

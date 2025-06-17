@@ -1,5 +1,10 @@
-import 'package:tafeal_demo/features/auth_feature/domain/repository/auth_interface.dart';
+import 'package:tafeal/features/auth_feature/domain/repository/auth_interface.dart';
 import 'package:get_it/get_it.dart';
+import 'package:tafeal/features/users_list/data/data_source/user_data_source.dart';
+import 'package:tafeal/features/users_list/data/data_source/user_data_source_impl.dart';
+import 'package:tafeal/features/users_list/data/repository/user_repository.dart';
+import 'package:tafeal/features/users_list/domain/repository/user_repository.dart';
+import 'package:tafeal/features/users_list/domain/usecases/user_use_case.dart';
 
 import '../../features/auth_feature/data/data_source/local_data_source/auth_local_data_source.dart';
 import '../../features/auth_feature/data/data_source/local_data_source/auth_local_data_source_impl.dart';
@@ -14,6 +19,8 @@ import '../../features/language_feature/data/repository/lang_repository.dart';
 import '../../features/language_feature/domain/interface/lang_interface.dart';
 import '../../features/language_feature/domain/use_case/lang_use_case.dart';
 import '../../features/language_feature/logic/language_cubit/language_cubit.dart';
+import '../../features/users_list/presentation/logic/user_details_cubit/user_details_cubit.dart';
+import '../../features/users_list/presentation/logic/users_cubit/user_cubit.dart';
 import '../features/connectivity_feature/data/data_source/remote_data_source.dart';
 import '../features/connectivity_feature/data/repository/connectivity_repository.dart';
 import '../features/connectivity_feature/domain/interface/connectivity_interface.dart';
@@ -27,11 +34,14 @@ Future<void> init() async {
   sl.registerFactory(() => LangCubit(sl()));
   sl.registerFactory(() => ConnectivityCubit());
   sl.registerFactory(() => SplashCubit(sl()));
+  sl.registerFactory(() => UserCubit(sl()));
+  sl.registerFactory(() => UserDetailsCubit(sl()));
 
   ///User case
   sl.registerLazySingleton(() => AuthUserCase(repository: sl()));
   sl.registerLazySingleton(() => LangUseCase(sl()));
   sl.registerLazySingleton(() => ConnectivityUseCase(sl()));
+  sl.registerLazySingleton(() => UserUseCase(sl()));
 
   ///repo
   sl.registerLazySingleton<LangInterface>(
@@ -49,6 +59,7 @@ Future<void> init() async {
   sl.registerLazySingleton<ConnectivityInterface>(
     () => ConnectivityRepository(remoteDataSourceInterface: sl()),
   );
+  sl.registerLazySingleton<IUserRepository>(() => UserRepository(sl()));
 
   ///auth local data source interface
   sl.registerLazySingleton<AuthLocalDataSourceInterface>(
@@ -68,4 +79,5 @@ Future<void> init() async {
   sl.registerLazySingleton<ConnectivityRemoteDataSourceInterface>(
     () => ConnectivityRemoteDataSourceImp(),
   );
+  sl.registerLazySingleton<UserDataSource>(() => UserDataSourceImpl());
 }

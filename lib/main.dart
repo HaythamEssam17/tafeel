@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'core/app/my_app.dart';
 import 'core/app_config/injection_container.dart' as di;
-import 'core/constants/app_constants.dart';
+import 'core/constants/app_colors.dart';
 import 'core/data_source/local_source/shared_prefs_imp.dart';
 import 'core/helpers/observers/bloc_observer.dart';
 import 'core/helpers/shared.dart';
@@ -20,6 +19,8 @@ void main() async {
 
   FlutterNativeSplash.preserve(widgetsBinding: bind);
 
+  FlutterNativeSplash.remove();
+
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
   ]);
@@ -28,7 +29,7 @@ void main() async {
     overlays: SystemUiOverlay.values,
   );
   SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(statusBarColor: AppConstants.mainColor),
+    const SystemUiOverlayStyle(statusBarColor: AppColors.mainColor),
   );
 
   FlutterError.onError = DioExceptions.onFlutterError;
@@ -52,7 +53,7 @@ void main() async {
   await dotenv.load(fileName: ".env");
 
   /// Initialize Flutter_Downloader
-  await FlutterDownloader.initialize(debug: true);
+  // await FlutterDownloader.initialize(debug: true);
 
   /// Initialize local storage
   await SharedPrefs.init();
@@ -60,7 +61,6 @@ void main() async {
   /// Initialize the Injections
   await di.init();
 
-  /// Initialize Dio SIngleton Instance
   DioHelper.instance;
 
   Bloc.observer = MyBlocObserver();

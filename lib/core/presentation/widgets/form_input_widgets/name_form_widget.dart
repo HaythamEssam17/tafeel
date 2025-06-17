@@ -1,8 +1,8 @@
-import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
+import 'package:tafeal/core/helpers/l10n/app_localizations.dart';
 
-import '../../../constants/app_constants.dart';
+import '../../../constants/app_colors.dart';
 import '../../../constants/asset_paths/icon_path.dart';
 import '../../../helpers/validators/validators.dart';
 import '../common_text_form_field_widget.dart';
@@ -27,7 +27,7 @@ class NameFormWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
         child: CommonAssetSvgImageWidget(
           imageString: IconPathsSVG.personIcon,
-          imageColor: AppConstants.mainColor,
+          imageColor: AppColors.mainColor,
           fit: BoxFit.contain,
           height: 22,
           width: 22,

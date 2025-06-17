@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
+import 'package:tafeal/core/helpers/l10n/app_localizations.dart';
 
 import '../../features/language_feature/logic/language_cubit/language_cubit.dart';
 import '../../features/language_feature/logic/language_cubit/language_states.dart';

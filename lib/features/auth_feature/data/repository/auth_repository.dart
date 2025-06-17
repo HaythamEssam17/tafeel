@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:tafeal_demo/core/helpers/shared.dart';
 import 'package:dartz/dartz.dart';
+import 'package:tafeal/core/helpers/shared.dart';
 
 import '../../../../core/constants/enums/exception_enums.dart';
 import '../../../../core/helpers/shared_texts.dart';

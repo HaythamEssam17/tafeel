@@ -1,21 +1,23 @@
-import 'package:tafeal_demo/core/constants/app_constants.dart';
+import 'package:tafeal/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/app_colors.dart';
 
 extension ContainerBoxDecoration on BoxDecoration {
   BoxDecoration dateRangeDecoration() {
     return BoxDecoration(
-      color: AppConstants.dateRangeBGColor,
+      color: AppColors.dateRangeBGColor,
       borderRadius: BorderRadius.circular(AppConstants.borderRadius28),
     );
   }
 
   BoxDecoration calendarDecoration() {
     return BoxDecoration(
-      color: AppConstants.backArrowColor,
+      color: AppColors.backArrowColor,
       shape: BoxShape.circle,
       boxShadow: [
         BoxShadow(
-          color: AppConstants.lightBlackColor.withOpacity(0.08),
+          color: AppColors.lightBlackColor.withOpacity(0.08),
           blurRadius: 8,
           offset: const Offset(0, 0),
           spreadRadius: 0,

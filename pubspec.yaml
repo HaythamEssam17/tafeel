@@ -1,4 +1,4 @@
-name: clean_arch_demo_las_version
+name: tafeal
 description: "A new clean architecture project using flutter 3.29.0 version."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -40,96 +40,58 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   # Language
-  intl: ^0.19.0
+  intl: ^0.20.2
 
   # State_Management
-  flutter_bloc: ^9.1.0
-  get_it: ^8.0.3
+  flutter_bloc: ^8.1.3
+  get_it: ^7.6.4
 
   # Api_Calling
-  dio: ^5.8.0+1
-
-  #dartz:
-  dartz: ^0.10.1
+  dio: ^5.4.0
 
   # Network_Image
-  cached_network_image: ^3.4.1
+  cached_network_image: ^3.3.1
 
   # Internet_Connectivity
-  connectivity_plus: ^6.1.3
+  connectivity_plus: ^5.0.2
 
   # Local_Storage
-  shared_preferences: ^2.5.3
+  shared_preferences: ^2.2.2
 
   # Responsive_Text
   auto_size_text: ^3.0.0
 
-  # Media Pickers
-  image_picker: ^1.1.2
-  image_gallery_saver_plus: ^4.0.1
-  screenshot: ^3.0.0
+  overlay_support: ^2.1.0
 
-  # Alerts
-  fluttertoast: ^8.2.12
+  #dartz:
+  dartz: ^0.10.1
 
   #svg_icon:
-  flutter_svg: ^2.0.17
+  flutter_svg: ^2.0.9
 
-  #pin_code_fields:
-  pin_code_fields: ^8.0.1
-
-  dropdown_button2: ^2.3.9
-
-  # google maps
-  google_maps_flutter: ^2.12.0
-  geocoding: ^3.0.0
-  location: ^8.0.0
-
-  calendar_date_picker2: ^2.0.0
-
-  overlay_support: ^2.1.0
-  lottie: ^3.3.1
-
-  # QR Scanner
-  qr_code_scanner_plus: ^2.0.10+1
-
-  #web view
-  webview_flutter: ^4.10.0
-
-  #html text
-  simple_html_css: ^5.0.0
-
-  #url_launcher:
-  url_launcher: ^6.3.1
-
-  #Notifications Badger
-  flutter_new_badger: ^1.1.1
-
-  # Firebase
-  firebase_core: ^3.12.1
-  firebase_messaging: ^15.2.4
-  flutter_local_notifications: ^19.0.0
-  firebase_analytics: ^11.4.4
-  firebase_performance: ^0.10.1+4
+  shimmer: ^3.0.0
 
   # Web Socket
-  socket_io_client: ^3.1.1
+  socket_io_client: ^2.0.3+1
 
   # Security
-  safe_device: ^1.2.1
-  flutter_dotenv: ^5.2.1
+  safe_device: ^1.1.4
+  flutter_dotenv: ^5.1.0
 
   # Device Info
-  device_info_plus: ^11.3.3
-  package_info_plus: ^8.3.0
+  device_info_plus: ^9.1.1
+  package_info_plus: ^5.0.1
+
+  # Share
+  share_plus: ^7.2.1
 
   # Downloaders
-  flutter_downloader: ^1.12.0
-  permission_handler: ^11.4.0
-  path_provider: ^2.1.5
+  flutter_downloader: ^1.11.6
+  permission_handler: ^11.1.0
+  path_provider: ^2.1.1
 
   # Splash [It removes the white screen when the app starts]
-  flutter_native_splash: ^2.4.5
+  flutter_native_splash: ^2.3.9
 
 dev_dependencies:
   flutter_test:

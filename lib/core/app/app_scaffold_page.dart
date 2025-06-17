@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal/core/constants/app_colors.dart';
+import 'package:tafeal/core/helpers/extensions/context_extensions.dart';
 
-import '../constants/app_constants.dart';
 import '../features/connectivity_feature/presentation/logic/connectivity_cubit/connectivity_cubit.dart';
 import '../features/connectivity_feature/presentation/logic/connectivity_cubit/connectivity_states.dart';
 import '../features/connectivity_feature/presentation/screens/no_connection_screen.dart';
@@ -25,7 +25,7 @@ class _AppScaffoldPageState extends State<AppScaffoldPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppConstants.lightWhiteColor,
+      backgroundColor: AppColors.lightWhiteColor,
       appBar: widget.appBar,
       body: GestureDetector(
         onTap: () => context.hideKeyboard(),

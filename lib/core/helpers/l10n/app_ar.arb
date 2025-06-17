@@ -6,5 +6,7 @@
   "lblWrongHappen": "حدث خطآ ما",
   "lblLoading": "تحميل",
   "lblFullName": "الاسم الكامل",
-  "lblFieldIsEmpty": "الحقل فارغ"
+  "lblFieldIsEmpty": "الحقل فارغ",
+  "lblNoUsers": "لا يوجد مستخدمين",
+  "lblUserDetails": "بيانات المستخدم"
 }

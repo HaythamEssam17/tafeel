@@ -1,28 +1,27 @@
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:tafeal_demo/core/helpers/shared.dart';
-import 'package:tafeal_demo/core/network/interceptors/connectivity_retry_interceptor.dart';
+import 'package:dio/io.dart';
+import 'package:flutter/foundation.dart';
+import 'package:tafeal/core/helpers/shared.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import '../app_config/app_configs.dart';
 import '../constants/enums/exception_enums.dart';
 import 'error_handling/custom_exception.dart';
 import 'error_handling/dio_exception.dart';
-import 'interceptors/performance_monitor.dart';
-import 'interceptors/trace_api_call_interceptor.dart';
 
 class DioHelper {
+  Connectivity connectivity = Connectivity();
+
   static DioHelper? _instance;
   static late Dio _dio;
-  Connectivity connectivity = Connectivity();
 
   static Dio get dio => _dio;
 
   // Instantiate the class if it hasn't been created yet.
   static DioHelper get instance {
-    DioHelper.instance;
     devLog('Dio singleton instance --->');
     _instance ??= DioHelper._();
     return _instance!;
@@ -33,33 +32,69 @@ class DioHelper {
     try {
       _dio = Dio(
         BaseOptions(
-          baseUrl: AppConfig.getCurrentApiEnvironment(),
+          baseUrl: dotenv.env['base_url']!,
           headers: {
             'Accept': 'application/json',
             'Content-type': 'application/json',
+            'x-api-key': 'reqres-free-v1',
           },
-          receiveDataWhenStatusError: true,
+          validateStatus: (_) => true,
+          receiveDataWhenStatusError: true, // Allow any HTTP status code.
+          connectTimeout: const Duration(seconds: 60),
+          sendTimeout: const Duration(seconds: 60),
+          receiveTimeout: const Duration(seconds: 60),
         ),
       );
 
       /// Dio Interceptors
-      dio.interceptors.addAll([
-        PerformanceMonitorInterceptor(dio),
-        PerformanceMonitorInterceptors(),
-        TracApiCallsInterceptor(dio),
-        RetryOnConnectionChangeInterceptor(
-          dio: dio,
-          connectivity: connectivity,
+      // dio.interceptors.add(TokenInterceptor());
+
+      /// Add a logging interceptor to log HTTP request and response details.
+      /// This print the log in terminal strts with: *** Request ***
+      dio.interceptors.add(
+        LogInterceptor(
+          request: true,
+          requestBody: true,
+          requestHeader: true,
+          responseHeader: true,
+          responseBody: true,
+          error: true,
         ),
-      ]);
+      );
+
+      /// Add custom interceptors for handling network connectivity and server exceptions.
+      // dio.interceptors.add(ConnectivityInterceptor());
+      // dio.interceptors.add(ServerExceptionInterceptor());
+      // dio.interceptors.add(LoggingInterceptor());
+
+      // Configure HttpClientAdapter for non-web platforms (e.g., mobile).
+      if (!kIsWeb) {
+        final HttpClient client =
+            HttpClient()
+              ..badCertificateCallback =
+                  (X509Certificate cert, String host, int port) => true;
+
+        // Use the IOHttpClientAdapter for making HTTP requests.
+        dio.httpClientAdapter = IOHttpClientAdapter(
+          createHttpClient: () => client,
+        );
+      }
     } on DioException catch (exception) {
       /// Get custom massage for the exception
-      final errorMessage = DioExceptions.fromDioError(exception).errorType;
+      final errorType = DioExceptions.fromDioError(exception).errorType;
 
       /// throw custom exception
-      throw CustomException(errorMessage, 'errfinalor.png');
+      throw CustomException(
+        errorType,
+        'error.png',
+        errorMassage: exception.message!,
+      );
     } catch (e) {
-      throw CustomException(CustomStatusCodeErrorType.unExcepted, 'error.png');
+      throw CustomException(
+        CustomStatusCodeErrorType.unExcepted,
+        'error.png',
+        errorMassage: e.toString(),
+      );
     }
   }
 
@@ -198,12 +233,12 @@ class DioHelper {
       /// Send to SLack Webhook
       dio
           .post(
-        dotenv.env['slack_webHock_url'] ?? '',
-        data: json.encode(request),
-      )
+            dotenv.env['slack_webHock_url'] ?? '',
+            data: json.encode(request),
+          )
           .then((response) {
-        devLog('Slack webhook response: --- ${response.data}');
-      });
+            devLog('Slack webhook response: --- ${response.data}');
+          });
     } catch (e) {
       devLog('Slack webhook exception --- Error --- $e');
 

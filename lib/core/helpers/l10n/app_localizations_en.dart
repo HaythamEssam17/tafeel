@@ -31,4 +31,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lblFieldIsEmpty => 'Field is empty';
+
+  @override
+  String get lblNoUsers => 'No users found';
+
+  @override
+  String get lblUserDetails => 'User Details';
 }

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constants/app_constants.dart';
+import '../../../constants/app_colors.dart';
 
 class SideMenuDivider extends StatelessWidget {
-  const SideMenuDivider({Key? key}) : super(key: key);
+  const SideMenuDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 1,
-      color: AppConstants.sectionSplitterColor,
+      color: AppColors.sectionSplitterColor,
     );
   }
 }

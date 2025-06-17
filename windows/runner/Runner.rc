@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.clean_arch.demo" "\0"
-            VALUE "FileDescription", "clean_arch_demo_las_version_last_version" "\0"
+            VALUE "FileDescription", "tafeal_last_version" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "clean_arch_demo_las_version_last_version" "\0"
+            VALUE "InternalName", "tafeal_last_version" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.clean_arch.demo. All rights reserved." "\0"
-            VALUE "OriginalFilename", "clean_arch_demo_las_version_last_version.exe" "\0"
-            VALUE "ProductName", "clean_arch_demo_las_version_last_version" "\0"
+            VALUE "OriginalFilename", "tafeal_last_version.exe" "\0"
+            VALUE "ProductName", "tafeal_last_version" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,20 +1,14 @@
 import 'dart:developer' as developer;
 import 'dart:io';
 
-import 'package:tafeal_demo/core/model/app_security_model.dart';
-import 'package:tafeal_demo/core/presentation/widgets/Alert_Dialogs/custom_flutter_toast.dart';
+import 'package:tafeal/core/model/app_security_model.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:safe_device/safe_device.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../constants/app_constants.dart';
 import 'shared_texts.dart';
 
 void devLog(String errorMessage) {
@@ -63,7 +57,7 @@ Future<bool> checkAppSecurity({
       devLog('Security - isJailBroken: $isJailBroken');
     }
     if (paramsAppCheck.canMockLocation) {
-      canMockLocation = await SafeDevice.canMockLocation;
+      canMockLocation = await SafeDevice.isMockLocation;
       devLog('Security - canMockLocation: $canMockLocation');
     }
     if (paramsAppCheck.onDevMode) {
@@ -75,7 +69,8 @@ Future<bool> checkAppSecurity({
       devLog('Security - onExternalStorage: $onExternalStorage');
     }
 
-    final bool result = (isEmulated ||
+    final bool result =
+        (isEmulated ||
             isJailBroken ||
             canMockLocation ||
             onDevMode ||
@@ -91,38 +86,15 @@ Future<bool> checkAppSecurity({
 }
 
 /// This function is to set the current screen route and send it to Firebase_Analytics
-Future<void> setCurrentScreen(
-  String firebaseScreenName,
-  String firebaseScreenClass,
-) async {
-  return FirebaseAnalytics.instance.setCurrentScreen(
-    screenName: firebaseScreenName,
-    screenClassOverride: firebaseScreenClass,
-  );
-}
-
-/// [takeScreenShotToGallery] is a function that take a screenshot and save it in the gallery.
-Future<void> takeScreenShotToGallery(
-  BuildContext context,
-  ScreenshotController screenshotController,
-) async {
-  /// the screenshot is saved in sNavigation
-  final Uint8List? capturedImage = await screenshotController.capture(
-    pixelRatio: 1.5,
-    delay: const Duration(milliseconds: 500),
-  );
-  // The image is saved by default with a random number in the gallery.
-  final result = await ImageGallerySaver.saveImage(
-    capturedImage ?? Uint8List(0),
-  );
-  if (result != null) {
-    showFlutterToast(
-      message: 'Scrrenshot saved to gallery',
-      bgColor: AppConstants.greyColor,
-      textColor: AppConstants.lightBlackColor,
-    );
-  }
-}
+// Future<void> setCurrentScreen(
+//   String firebaseScreenName,
+//   String firebaseScreenClass,
+// ) async {
+//   return FirebaseAnalytics.instance.logScreenView(
+//     screenName: firebaseScreenName,
+//     screenClass: firebaseScreenClass,
+//   );
+// }
 
 /// [getDeviceId] is a function that get the device id.
 Future<String?> getDeviceId() async {
@@ -131,9 +103,10 @@ Future<String?> getDeviceId() async {
   if (Platform.isAndroid) {
     final AndroidDeviceInfo androidDeviceInfo =
         await deviceInfoPlugin.androidInfo;
-    deviceId = androidDeviceInfo.serialNumber == 'unknown'
-        ? androidDeviceInfo.id
-        : '${androidDeviceInfo.id}@${androidDeviceInfo.serialNumber}';
+    deviceId =
+        androidDeviceInfo.serialNumber == 'unknown'
+            ? androidDeviceInfo.id
+            : '${androidDeviceInfo.id}@${androidDeviceInfo.serialNumber}';
   } else if (Platform.isIOS) {
     final IosDeviceInfo iosDeviceInfo = await deviceInfoPlugin.iosInfo;
     deviceId = iosDeviceInfo.identifierForVendor;

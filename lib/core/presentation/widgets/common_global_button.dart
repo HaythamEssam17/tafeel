@@ -1,7 +1,8 @@
-import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal/core/helpers/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
+import 'package:tafeal/core/helpers/l10n/app_localizations.dart';
 
+import '../../constants/app_colors.dart';
 import '../../constants/app_constants.dart';
 import '../../helpers/shared.dart';
 import 'common_title_text.dart';
@@ -28,17 +29,17 @@ class CommonGlobalButton extends StatelessWidget {
   final Color? borderColor;
 
   const CommonGlobalButton({
-    Key? key,
+    super.key,
     required this.buttonText,
     required this.onPressedFunction,
-    this.buttonBackgroundColor = AppConstants.mainColor,
+    this.buttonBackgroundColor = AppColors.mainColor,
     this.onPressedColor,
     this.shadowBackgroundColor,
     this.elevation = 0.0,
     this.width = 343,
     this.height = 40,
-    this.iconColor = AppConstants.lightWhiteColor,
-    this.buttonTextColor = AppConstants.lightWhiteColor,
+    this.iconColor = AppColors.lightWhiteColor,
+    this.buttonTextColor = AppColors.lightWhiteColor,
     this.buttonTextFontWeight = FontWeight.w400,
     this.buttonTextSize = AppConstants.fontSize14,
     this.icon,
@@ -47,8 +48,8 @@ class CommonGlobalButton extends StatelessWidget {
     this.isLoading = false,
     this.isEnable = true,
     this.showBorder = false,
-    this.borderColor = AppConstants.mainColor,
-  }) : super(key: key);
+    this.borderColor = AppColors.mainColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,18 +63,19 @@ class CommonGlobalButton extends StatelessWidget {
         side: WidgetStateProperty.all<BorderSide>(
           BorderSide(
             width: 1,
-            color: showBorder
-                ? isLoading || !isEnable
-                    ? AppConstants.shadowColor
-                    : borderColor!
-                : AppConstants.transparent,
+            color:
+                showBorder
+                    ? isLoading || !isEnable
+                        ? AppColors.shadowColor
+                        : borderColor!
+                    : AppColors.transparent,
           ),
         ),
         shadowColor: WidgetStateProperty.all(
-          shadowBackgroundColor ?? AppConstants.greyColor.withOpacity(.3),
+          shadowBackgroundColor ?? AppColors.greyColor.withOpacity(.3),
         ),
         overlayColor: WidgetStateProperty.all(
-          onPressedColor ?? AppConstants.greyColor.withOpacity(.25),
+          onPressedColor ?? AppColors.greyColor.withOpacity(.25),
         ),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius!)),
@@ -81,48 +83,54 @@ class CommonGlobalButton extends StatelessWidget {
         fixedSize: WidgetStateProperty.all<Size>(
           Size(buttonWidth, buttonHeight),
         ),
-        backgroundColor: isLoading || !isEnable
-            ? WidgetStateProperty.all(AppConstants.shadowColor)
-            : WidgetStateProperty.all(
-                buttonBackgroundColor ?? AppConstants.mainColor,
-              ),
-      ),
-      child: icon != null
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (!isLoading) icon!,
-                getSpaceWidth(spaceSize!),
-                CommonTitleText(
-                  textKey: isLoading
-                      ? AppLocalizations.of(context)!.lblLoading
-                      : buttonText,
-                  textStyle: context.textTheme.bodyMedium!.copyWith(
-                    fontSize: buttonTextSize!,
-                    fontWeight: buttonTextFontWeight!,
-                    color: isEnable
-                        ? isLoading
-                            ? AppConstants.greyColor
-                            : buttonTextColor!
-                        : AppConstants.greyColor,
-                  ),
+        backgroundColor:
+            isLoading || !isEnable
+                ? WidgetStateProperty.all(AppColors.shadowColor)
+                : WidgetStateProperty.all(
+                  buttonBackgroundColor ?? AppColors.mainColor,
                 ),
-              ],
-            )
-          : CommonTitleText(
-              textKey: isLoading
-                  ? AppLocalizations.of(context)!.lblLoading
-                  : buttonText,
-              textStyle: context.textTheme.bodyMedium!.copyWith(
-                fontSize: buttonTextSize!,
-                fontWeight: buttonTextFontWeight!,
-                color: isEnable
-                    ? isLoading
-                        ? AppConstants.greyColor
-                        : buttonTextColor!
-                    : AppConstants.greyColor,
+      ),
+      child:
+          icon != null
+              ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (!isLoading) icon!,
+                  getSpaceWidth(spaceSize!),
+                  CommonTitleText(
+                    textKey:
+                        isLoading
+                            ? AppLocalizations.of(context)!.lblLoading
+                            : buttonText,
+                    textStyle: context.textTheme.bodyMedium!.copyWith(
+                      fontSize: buttonTextSize!,
+                      fontWeight: buttonTextFontWeight!,
+                      color:
+                          isEnable
+                              ? isLoading
+                                  ? AppColors.greyColor
+                                  : buttonTextColor!
+                              : AppColors.greyColor,
+                    ),
+                  ),
+                ],
+              )
+              : CommonTitleText(
+                textKey:
+                    isLoading
+                        ? AppLocalizations.of(context)!.lblLoading
+                        : buttonText,
+                textStyle: context.textTheme.bodyMedium!.copyWith(
+                  fontSize: buttonTextSize!,
+                  fontWeight: buttonTextFontWeight!,
+                  color:
+                      isEnable
+                          ? isLoading
+                              ? AppColors.greyColor
+                              : buttonTextColor!
+                          : AppColors.greyColor,
+                ),
               ),
-            ),
     );
   }
 }

@@ -1,10 +1,12 @@
-import 'package:tafeal_demo/core/constants/app_constants.dart';
-import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
-import 'package:tafeal_demo/core/helpers/shared.dart';
-import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_image_widget.dart';
-import 'package:tafeal_demo/core/presentation/widgets/common_global_button.dart';
-import 'package:tafeal_demo/core/presentation/widgets/common_title_text.dart';
+import 'package:tafeal/core/constants/app_constants.dart';
+import 'package:tafeal/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal/core/helpers/shared.dart';
+import 'package:tafeal/core/presentation/widgets/Images/common_asset_image_widget.dart';
+import 'package:tafeal/core/presentation/widgets/common_global_button.dart';
+import 'package:tafeal/core/presentation/widgets/common_title_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../../constants/app_colors.dart';
 
 Future<void> showAlertDialogWithTwoButton({
   required BuildContext context,
@@ -21,10 +23,10 @@ Future<void> showAlertDialogWithTwoButton({
   bool showImage = true,
   bool isFirstButtonLoading = false,
   double firstButtonRadius = AppConstants.borderRadius24,
-  Color firstButtonColor = AppConstants.lightWhiteColor,
-  Color firstButtonBorderColor = AppConstants.lightRedColor,
-  Color firstButtonTextColor = AppConstants.lightRedColor,
-  Color secondButtonTextColor = AppConstants.mainColor,
+  Color firstButtonColor = AppColors.lightWhiteColor,
+  Color firstButtonBorderColor = AppColors.lightRedColor,
+  Color firstButtonTextColor = AppColors.lightRedColor,
+  Color secondButtonTextColor = AppColors.mainColor,
 }) async {
   return showDialog(
     barrierColor: Colors.black.withOpacity(0.33),
@@ -69,7 +71,7 @@ Future<void> showAlertDialogWithTwoButton({
               CommonTitleText(
                 textKey: description,
                 textStyle: context.textTheme.titleMedium!,
-                selectionColor: AppConstants.reasonsLightGreyColor,
+                selectionColor: AppColors.reasonsLightGreyColor,
               ),
 
               /// Space
@@ -102,12 +104,12 @@ Future<void> showAlertDialogWithTwoButton({
                   /// Confirm
                   CommonGlobalButton(
                     showBorder: true,
-                    borderColor: AppConstants.lightWhiteColor,
+                    borderColor: AppColors.lightWhiteColor,
                     width: 112,
                     buttonTextFontWeight: FontWeight.w400,
                     buttonTextSize: AppConstants.fontSize14,
                     elevation: 0,
-                    buttonBackgroundColor: AppConstants.lightWhiteColor,
+                    buttonBackgroundColor: AppColors.lightWhiteColor,
                     buttonTextColor: secondButtonTextColor,
                     buttonText: secondButtonText,
                     onPressedFunction: () {

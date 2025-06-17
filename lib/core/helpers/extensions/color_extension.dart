@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/app_constants.dart';
+import '../../constants/app_colors.dart';
 
 extension ColorExtensions on ColorScheme {
   Color getStepperCircleColor(int index, int currentStep) {
     Color color;
     if ((index + 1) < currentStep) {
-      color = AppConstants.lightBlueColor;
+      color = AppColors.lightBlueColor;
     } else if ((index + 1) == currentStep) {
-      color = AppConstants.lightWhiteColor;
+      color = AppColors.lightWhiteColor;
     } else {
-      color = AppConstants.greyColor;
+      color = AppColors.greyColor;
     }
     return color;
   }
@@ -18,9 +18,9 @@ extension ColorExtensions on ColorScheme {
   Color getStepperBorderColor(int index, int currentStep) {
     Color color;
     if ((index + 1) <= currentStep) {
-      color = AppConstants.lightBlueColor;
+      color = AppColors.lightBlueColor;
     } else {
-      color = AppConstants.greyColor;
+      color = AppColors.greyColor;
     }
     return color;
   }
@@ -28,9 +28,9 @@ extension ColorExtensions on ColorScheme {
   Color getStepperLineColor(int index, int currentStep) {
     Color color;
     if ((index + 1) < currentStep) {
-      color = AppConstants.lightBlueColor;
+      color = AppColors.lightBlueColor;
     } else {
-      color = AppConstants.greyColor;
+      color = AppColors.greyColor;
     }
 
     return color;

@@ -1,8 +1,9 @@
-import 'package:tafeal_demo/core/helpers/extensions/context_extensions.dart';
-import 'package:tafeal_demo/core/helpers/l10n/app_localizations.dart';
-import 'package:tafeal_demo/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
+import 'package:tafeal/core/helpers/extensions/context_extensions.dart';
+import 'package:tafeal/core/helpers/l10n/app_localizations.dart';
+import 'package:tafeal/core/presentation/widgets/Images/common_asset_svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/app_colors.dart';
 import '../../constants/app_constants.dart';
 import '../../helpers/shared.dart';
 import 'common_global_button.dart';
@@ -52,7 +53,7 @@ class EmptyScreen extends StatelessWidget {
             maxLines: 2,
             textOverflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
-            selectionColor: AppConstants.mainTextColor,
+            selectionColor: AppColors.mainTextColor,
           ),
         ),
         if (description != null) ...[
@@ -64,7 +65,7 @@ class EmptyScreen extends StatelessWidget {
               maxLines: 2,
               textOverflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              selectionColor: AppConstants.textInputColor,
+              selectionColor: AppColors.textInputColor,
             ),
           ),
         ],
@@ -74,12 +75,12 @@ class EmptyScreen extends StatelessWidget {
             radius: AppConstants.borderRadius8,
             width: 140,
             height: 40,
-            buttonBackgroundColor: AppConstants.verificationCodeColor,
+            buttonBackgroundColor: AppColors.verificationCodeColor,
             onPressedFunction: onTap ?? () {},
             buttonText: buttonText ?? AppLocalizations.of(context)!.lblRetry,
             buttonTextFontWeight: FontWeight.w400,
             elevation: 0,
-            buttonTextColor: AppConstants.mainColor,
+            buttonTextColor: AppColors.mainColor,
           ),
         ],
       ],
